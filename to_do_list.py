@@ -21,13 +21,27 @@ from flask import Flask, render_template, Request, redirect, url_for
 
 app = Flask(__name__, template_folder="templates")
 
-todos = [{"todo": "Sample Todo", "done": False}]
+todos = [{"task": "Sample Todo", "done": False}]
 
 @app.route("/")
 def index():
     return render_template("index.html", todos=todos)
 
-@app.route
+@app.route("/add", methods = ["Post"])
+def add():
+    todo = Request.form['todo']
+    todos.append({"task": todo, "done":False})
+    return redirect(url_for("index"))
+
+@app.route("/edit/<int:index", methods=["GET", "POST"])
+def edit(index):
+    todo = todos[index]
+    if Request.method == "POST":
+        todo['task'] = Request.form["todo"]
+        return redirect(url_for("index"))
+    else:
+        return render_template("edit.html", todo=todo, index=index)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
