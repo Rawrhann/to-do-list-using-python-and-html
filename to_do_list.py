@@ -17,15 +17,17 @@ Send the demo/link to my messenger before Feb 3.
 
 #create a checker that is interactable with the user to checkoff the to do
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, Request, redirect, url_for
 
-to_do_list_app = Flask(__name__, template_folder="templates")
+app = Flask(__name__, template_folder="templates")
 
 todos = [{"todo": "Sample Todo", "done": False}]
 
-@to_do_list_app.route("/")
+@app.route("/")
 def index():
     return render_template("index.html", todos=todos)
 
-if __name__ == 'm__main__':
-    to_do_list_app.run(debug=True)
+@app.route
+
+if __name__ == "__main__":
+    app.run(debug=True)
