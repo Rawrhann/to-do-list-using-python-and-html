@@ -17,6 +17,10 @@ Send the demo/link to my messenger before Feb 3.
 
 #create a checker that is interactable with the user to checkoff the to do
 
+"""
+Reference:
+https://www.youtube.com/watch?v=W1r8fVLS-gI
+"""
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__, template_folder="templates")
